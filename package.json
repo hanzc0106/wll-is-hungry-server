@@ -1,0 +1,48 @@
+{
+  "name": "wll-is-hungry-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/app.ts",
+    "test": "pm2 start src/config/pm2.config.js --only test",
+    "prod": "pm2 start src/config/pm2.config.js --only production",
+    "stop": "pm2 stop src/config/pm2.config.js",
+    "delete": "pm2 delete src/config/pm2.config.js",
+    "list": "pm2 list",
+    "tsc": "tsc && npm run copy-package && npm run copy-assets",
+    "copy-package": "cp package.json dist/",
+    "copy-assets": "cp src/assets/apiclient_key.pem src/assets/apiclient_cert.pem dist/src/assets/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "koa": "^2.15.3",
+    "koa-body": "^6.0.1",
+    "koa-router": "^13.0.1",
+    "log4js": "^6.9.1",
+    "mysql2": "^3.12.0",
+    "pm2": "^5.4.3",
+    "qs": "^6.14.0",
+    "request": "^2.88.2",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/koa": "^2.15.0",
+    "@types/koa-router": "^7.4.8",
+    "@types/log4js": "^2.3.5",
+    "@types/mysql": "^2.15.26",
+    "@types/node": "^22.13.1",
+    "@types/qs": "^6.9.18",
+    "@types/request": "^2.48.12",
+    "@types/sequelize": "^4.28.20",
+    "eslint": "^9.20.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
