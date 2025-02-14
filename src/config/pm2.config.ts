@@ -8,7 +8,7 @@ module.exports = {
   apps: [
     {
       name: 'production', //需与package.json里--only 后缀名相同
-      script: './src/app.js', // 运营入口
+      script: './src/app.ts', // 运营入口
       args: 'one two',
       instances: 2, //cpu有几核开几个就行；我服务器是2核4g所以开了2个
       cron_restart: '0 03 * * *', //每天凌晨3点重启；
@@ -30,7 +30,7 @@ module.exports = {
     },
     {
       name: 'test', //需与package.json里--only 后缀名相同
-      script: './src/app.js',
+      script: './src/app.ts',
       args: 'one two',
       instances: 1,
       cron_restart: '0 03 * * *', //每天凌晨3点重启；

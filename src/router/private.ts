@@ -17,11 +17,4 @@ const service = {
   order: '/order'
 }
 
-// user服务
-// 忘记密码
-router.post(
-  `${platform}${service.user}/password/change`,
-  controllers.app_user.userPasswordChangeApi
-)
-
 export default router

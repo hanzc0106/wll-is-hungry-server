@@ -15,17 +15,8 @@ const sequelize = new Sequelize(dbName, user, password, {
     dateStrings: true,
     typeCast: true
   },
-  // query: {
-  //     raw: true
-  // },
   define: {
-    timestamps: true,
-    paranoid: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    deletedAt: 'deleted_at',
-    // 把驼峰命名转换为下划线
-    underscored: true
+    // underscored: true
   }
 })
 
@@ -34,7 +25,7 @@ sequelize
   .sync({ force: false, alter: true })
   .then((res) => {})
   .catch((err) => {
-    logger.error('模型同步失败')
+    logger.error('模型同步失败', dbName, user, password, host, port, err.message)
   })
 
 sequelize

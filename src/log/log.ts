@@ -6,15 +6,11 @@ import { getClientIpAddress } from '../utils/util'
 
 log4js.configure({
   pm2: true,
-
   appenders: {
     everything: {
       type: 'dateFile',
-
       filename: __dirname + '/all-the-logs.log',
-
       maxLogSize: '10M',
-
       backups: 20
     }
   },

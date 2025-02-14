@@ -1,24 +1,21 @@
+import { getRecipeListByIds } from './../services/recipe'
+import { getAllRecipes } from './../controllers/app/recipe'
 import controllers from '../controllers'
 import koaRouter from 'koa-router'
-import { scrapyScanGameApi } from '../controllers/app/scrapy'
 
 const router = new koaRouter()
 
-const platform = '/game'
+const version = 'v1'
 
 const service = {
   global: '',
-  user: '/user',
-  product: '/product',
-  banner: '/banner',
-  order: '/order'
+  recipe: '/recipe'
 }
 
-// global服务
-// 微信支付结果通知
-router.post(
-  `${platform}${service.global}/notify/wxMiniPay`,
-  controllers.app_global.wxMiniPayNoticeApi
-)
+// 获取全部菜品
+router.get(`/api/${version}${service.recipe}/all`, controllers.app_recipe.getAllRecipes)
+
+// 根据id列表获取菜谱
+router.post(`/api/${version}${service.recipe}/list`, controllers.app_recipe.getRecipesByIds)
 
 export default router

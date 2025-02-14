@@ -18,8 +18,8 @@ app.use(errorHandler)
 app.use(koaBody({ multipart: true }))
 
 // Routes
-app.use(publicRouter.routes()).use(publicRouter.allowedMethods()) // 公共路由
-app.use(privateRouter.routes()).use(privateRouter.allowedMethods()) // 权限路由
+// app.use(publicRouter.routes()).use(publicRouter.allowedMethods()) // 公共路由
+// app.use(privateRouter.routes()).use(privateRouter.allowedMethods()) // 权限路由
 app.use(openRouter.routes()).use(openRouter.allowedMethods()) // 公开路由
 
 // Response
@@ -39,5 +39,5 @@ server.on('listening', () => {
   const ip = getIpAddress()
   const address = `http://${ip}:${port}`
   const localAddress = `http://localhost:${port}`
-  console.log(`app started at address \n\n${localAddress}\n\n${address}`)
+  console.log(`\napp started at address:\n\n${localAddress}\n${address}`)
 })

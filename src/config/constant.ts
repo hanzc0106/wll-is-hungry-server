@@ -1,6 +1,3 @@
-// 环境变量配置
-import { anyKeyObject } from '../type/global'
-
 export const ENV = {
   development: 'development',
   production: 'production'
@@ -10,10 +7,10 @@ export const ENV = {
 export const DATABASE = {
   // 本地环境
   development: {
-    dbName: 'xxx',
+    dbName: 'eat_what',
     user: 'root',
-    password: 'xxx',
-    host: 'xxx',
+    password: 'hl145632.',
+    host: 'localhost',
     port: 3306
   },
 
