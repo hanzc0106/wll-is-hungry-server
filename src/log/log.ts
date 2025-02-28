@@ -2,7 +2,7 @@ import Koa from 'koa'
 
 import log4js from 'log4js'
 
-import { getClientIpAddress } from '../utils/util'
+import { getClientIpAddress } from '@/utils/util'
 
 log4js.configure({
   pm2: true,

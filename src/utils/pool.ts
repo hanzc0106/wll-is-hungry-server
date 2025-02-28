@@ -1,5 +1,5 @@
-import { DATABASE, ENV } from '../config/constant'
-import { logger } from '../log/log'
+import { DATABASE, ENV } from '@/config/constant'
+import { logger } from '@/log/log'
 import { Sequelize } from 'sequelize'
 
 const { dbName, user, password, host, port } =

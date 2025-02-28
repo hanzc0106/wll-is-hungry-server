@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { ENV } from '../config/constant'
+import { ENV } from '@/config/constant'
 
 const controllers = {} as { [key: string]: any }
 

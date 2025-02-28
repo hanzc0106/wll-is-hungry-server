@@ -1,13 +1,31 @@
 import { Context, Next } from 'koa'
-import { getAllRecipeList, getRecipeListByIds } from '../../services/recipe'
+import {
+  getAllMeatRecipes,
+  getAllRecipeList,
+  getAllVegeRecipes,
+  getRecipeListByIds
+} from '@/services/recipe'
 
-export const getAllRecipes = async (ctx: Context, next: Next) => {
+export async function getAllRecipes(ctx: Context, next: Next): Promise<void> {
   const allRecipes = await getAllRecipeList()
   ctx.body = allRecipes
   return next()
 }
 
-export const getRecipesByIds = async (ctx: Context, next: Next) => {
+export async function getVegeRecipes(ctx: Context, next: Next): Promise<void> {
+  console.log('getVegeRecipes')
+  const vegeRecipes = await getAllVegeRecipes()
+  ctx.body = vegeRecipes
+  return next()
+}
+
+export async function getMeatRecipes(ctx: Context, next: Next): Promise<void> {
+  const meatRecipes = await getAllMeatRecipes()
+  ctx.body = meatRecipes
+  return next()
+}
+
+export async function getRecipesByIds(ctx: Context, next: Next): Promise<void> {
   const ids = ctx.request.body.ids
   if (!Array.isArray(ids)) {
     throw new Error('Invalid request body: ids should be an array')

@@ -1,11 +1,11 @@
 // src/models/Recipe.ts
 import { Model, DataTypes, Optional } from 'sequelize'
-import sequelize from '../utils/pool'
+import sequelize from '@/utils/pool'
 import { StepAttributes } from './Step'
 import { IngredientAttributes } from './Ingredient'
 
 // 定义属性类型
-interface RecipeAttributes {
+export interface RecipeAttributes {
   id: number
   name: string
   description?: string
@@ -17,7 +17,7 @@ interface RecipeAttributes {
 }
 
 // 定义创建时的可选属性
-interface RecipeCreationAttributes
+export interface RecipeCreationAttributes
   extends Optional<RecipeAttributes, 'id' | 'description' | 'updatedAt'> {}
 
 // 定义模型类

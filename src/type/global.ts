@@ -10,3 +10,12 @@ export type fileType = {
   mimetype: string
   size: number
 }
+
+export type Pagination = {
+  pageNumb: number
+  pageSize: number
+  pageTotal: number
+}
+
+export type PaginationReq = Pick<Pagination, 'pageNumb' | 'pageSize'>
+export type paginationRes = Pagination

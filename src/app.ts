@@ -1,11 +1,11 @@
 import Koa from 'koa'
 import http from 'http'
 import koaBody from 'koa-body'
-import { getIpAddress } from './utils/util'
-import { loggerMiddleware } from './log/log'
-import { FIXED_KEY } from './config/constant'
-import { privateRouter, publicRouter, openRouter } from './router'
-import { errorHandler, responseHandler } from './middleware/response'
+import { getIpAddress } from '@/utils/util'
+import { loggerMiddleware } from '@/log/log'
+import { FIXED_KEY } from '@/config/constant'
+import { privateRouter, publicRouter, openRouter } from '@/router'
+import { errorHandler, responseHandler } from '@/middleware/response'
 
 const app = new Koa()
 // log middleware

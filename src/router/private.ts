@@ -1,6 +1,6 @@
 import koaRouter from 'koa-router'
-import controllers from '../controllers'
-import { jwtMiddlewareDeal, platformMiddlewareDeal } from '../middleware/jwt'
+import controllers from '@/controllers'
+import { jwtMiddlewareDeal, platformMiddlewareDeal } from '@/middleware/jwt'
 
 const router = new koaRouter()
 

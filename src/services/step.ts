@@ -1,7 +1,7 @@
-import Step from '../models/Step'
+import Step, { StepAttributes } from '@/models/Step'
 import { Op } from 'sequelize'
 
-export const getStepsByRecipeId = async (recipeId: number) => {
+export async function getStepsByRecipeId(recipeId: number): Promise<StepAttributes[]> {
   const steps = await Step.findAll({
     where: {
       recipe_id: {

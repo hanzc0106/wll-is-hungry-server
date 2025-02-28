@@ -1,6 +1,6 @@
 import Koa from 'koa'
-import { logger } from '../log/log'
-import { CODE } from '../config/code'
+import { logger } from '@/log/log'
+import { CODE } from '@/config/code'
 import { Context } from 'koa'
 
 // 这个middleware用于将ctx.result中的内容最终回传给客户端

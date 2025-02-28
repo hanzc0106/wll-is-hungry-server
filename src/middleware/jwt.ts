@@ -1,9 +1,9 @@
 import { Context, Next } from 'koa'
-import { CODE } from '../config/code'
-import { decodeToken } from '../utils/util'
-import { getRequestType } from '../type/global'
-import { PLATFORM } from '../config/constant'
-// import { getUserInfoByIdService } from '../services/user'
+import { CODE } from '@/config/code'
+import { decodeToken } from '@/utils/util'
+import { getRequestType } from '@/type/global'
+import { PLATFORM } from '@/config/constant'
+// import { getUserInfoByIdService } from '@/services/user'
 
 export const jwtMiddlewareDeal = async (ctx: Context, next: Next) => {
   const token = ctx.request.headers.token

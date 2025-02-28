@@ -1,4 +1,4 @@
-import sequelize from '../utils/pool'
+import sequelize from '@/utils/pool'
 import { Model, DataTypes, Optional } from 'sequelize'
 
 // 定义模型的属性
@@ -10,7 +10,7 @@ export interface StepAttributes {
 }
 
 // 定义创建时可选的属性
-interface StepCreationAttributes extends Optional<StepAttributes, 'id'> {}
+export interface StepCreationAttributes extends Optional<StepAttributes, 'id'> {}
 
 // 定义模型类
 class Step extends Model<StepAttributes, StepCreationAttributes> {
