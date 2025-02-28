@@ -17,12 +17,8 @@ export async function getAllRecipeList(): Promise<RecipeAttributes[]> {
 export async function getAllVegeRecipes(): Promise<RecipeAttributes[]> {
   try {
     const vegeCategoryIds = await getVegeCategoryIds()
-    console.log(111)
     const recipeIds = await getDistinctRecipeIdsByCategoryIds(vegeCategoryIds)
-    console.log(222)
-
     const recipes = await getRecipeListByIds(recipeIds)
-    console.log(333)
     return recipes
   } catch (e) {
     console.log(e)

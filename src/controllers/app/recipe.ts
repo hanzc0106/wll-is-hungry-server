@@ -13,7 +13,6 @@ export async function getAllRecipes(ctx: Context, next: Next): Promise<void> {
 }
 
 export async function getVegeRecipes(ctx: Context, next: Next): Promise<void> {
-  console.log('getVegeRecipes')
   const vegeRecipes = await getAllVegeRecipes()
   ctx.body = vegeRecipes
   return next()
