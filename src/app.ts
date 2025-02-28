@@ -1,5 +1,6 @@
 import Koa from 'koa'
 import http from 'http'
+import cors from '@koa/cors'
 import koaBody from 'koa-body'
 import { getIpAddress } from '@/utils/util'
 import { loggerMiddleware } from '@/log/log'
@@ -8,6 +9,18 @@ import { privateRouter, publicRouter, openRouter } from '@/router'
 import { errorHandler, responseHandler } from '@/middleware/response'
 
 const app = new Koa()
+
+// 配置跨域中间件
+app.use(
+  cors({
+    origin: '*', // 允许所有来源访问，生产环境中应该设置为特定域名
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+    credentials: true, // 允许发送cookie
+    maxAge: 86400 // 预检请求有效期，单位为秒
+  })
+)
+
 // log middleware
 app.use(loggerMiddleware)
 
