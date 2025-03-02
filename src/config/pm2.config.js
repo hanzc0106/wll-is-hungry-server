@@ -16,6 +16,8 @@ module.exports = {
       watch: false,
       min_uptime: '200s',
       max_restarts: 10,
+      interpreter: 'node', // 解释器
+      interpreterArgs: '-r ts-node/register -r tsconfig-paths/register',
       ignore_watch: [
         // 不用监听的文件
         'node_modules',
@@ -36,6 +38,8 @@ module.exports = {
       cron_restart: '0 03 * * *', //每天凌晨3点重启；
       autorestart: true,
       watch: true,
+      interpreter: 'node', // 解释器
+      interpreterArgs: '-r ts-node/register -r tsconfig-paths/register',
       ignore_watch: [
         // 不用监听的文件
         'node_modules',

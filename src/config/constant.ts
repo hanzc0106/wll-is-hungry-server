@@ -16,10 +16,10 @@ export const DATABASE = {
 
   // 阿里云
   production: {
-    dbName: 'xxx',
+    dbName: 'eat_what',
     user: 'root',
-    password: 'xxx',
-    host: 'xxx',
+    password: 'hl145632.',
+    host: 'debian.hanzc.fun',
     port: 3306
   }
 }
