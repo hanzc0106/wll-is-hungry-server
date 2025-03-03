@@ -41,5 +41,6 @@ export const loggerMiddleware = async (ctx: Koa.Context, next: Koa.Next) => {
     ctx.request.body
   )} 响应参数： ${JSON.stringify(ctx.body)} - ${remoteAddress} - ${ms}ms`
 
+  console.log(logText)
   logger.info(logText)
 }
