@@ -20,8 +20,8 @@ export const DATABASE = {
     dbName: 'eat_what',
     user: 'root',
     password: 'hl145632.',
-    // host: 'localhost',
-    host: 'debian.hanzc.fun',
+    host: 'localhost',
+    // host: 'debian.hanzc.fun',
     port: 3306
   }
 }

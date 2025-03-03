@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec \"node -r tsconfig-paths/register -r ts-node/register src/app.ts\"",
     "test": "pm2 start src/config/pm2.config.js --only test",
-    "prod": "pm2 start src/config/pm2.config.js --only production",
+    "prod": "pm2 start src/config/pm2.config.js --only prod",
     "stop": "pm2 stop src/config/pm2.config.js",
     "delete": "pm2 delete src/config/pm2.config.js",
     "list": "pm2 list",

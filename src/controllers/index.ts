@@ -5,7 +5,7 @@ import { ENV } from '@/config/constant'
 const controllers = {} as { [key: string]: any }
 
 // 处理ts编译后js文件识别问题
-const fileType = process.env.NODE_ENV === ENV.production ? 'js' : 'ts'
+const fileType = process.env.NODE_ENV === ENV.production ? 'ts' : 'ts'
 
 function readFileList(dir: any) {
   const files = fs.readdirSync(dir)
