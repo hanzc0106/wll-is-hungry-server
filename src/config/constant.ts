@@ -1,8 +1,20 @@
+import * as dotenv from 'dotenv'
+
+const envFile = process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev'
+dotenv.config({ path: envFile })
+
 export const ENV = {
   development: 'development',
   production: 'production'
 }
 
+console.log(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  process.env.DB_HOST,
+  process.env.DB_PORT
+)
 // mysql配置
 export const DATABASE = {
   // 本地环境
