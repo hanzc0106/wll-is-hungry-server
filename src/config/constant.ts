@@ -7,20 +7,20 @@ export const ENV = {
 export const DATABASE = {
   // 本地环境
   development: {
-    dbName: 'eat_what',
-    user: 'root',
-    password: 'hl145632.',
-    host: 'debian.hanzc.fun',
-    port: 3306
+    dbName: process.env.DB_NAME || '',
+    user: process.env.DB_USER || '',
+    password: process.env.DB_PASSWORD || '',
+    host: process.env.DB_HOST || '',
+    port: Number(process.env.DB_PORT) || 3306
   },
 
   // 阿里云
   production: {
-    dbName: 'eat_what',
-    user: 'root',
-    password: 'hl145632.',
-    host: 'localhost',
-    port: 3306
+    dbName: process.env.DB_NAME || '',
+    user: process.env.DB_USER || '',
+    password: process.env.DB_PASSWORD || '',
+    host: process.env.DB_HOST || '',
+    port: Number(process.env.DB_PORT) || 3306
   }
 }
 

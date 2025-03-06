@@ -7,6 +7,10 @@ import { loggerMiddleware } from '@/log/log'
 import { FIXED_KEY } from '@/config/constant'
 import { privateRouter, publicRouter, openRouter } from '@/router'
 import { errorHandler, responseHandler } from '@/middleware/response'
+import * as dotenv from 'dotenv'
+
+const envFile = process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev'
+dotenv.config({ path: envFile })
 
 const app = new Koa()
 
