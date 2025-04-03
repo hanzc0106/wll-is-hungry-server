@@ -21,7 +21,12 @@ export interface RecipeCreationAttributes
   extends Optional<RecipeAttributes, 'id' | 'description' | 'updatedAt'> {}
 
 // 定义模型类
-class Recipe extends Model<RecipeAttributes, RecipeCreationAttributes> {}
+class Recipe extends Model<RecipeAttributes, RecipeCreationAttributes> {
+  public static associate(models: any) {
+    Recipe.hasMany(models.RecipesIngredient, { foreignKey: 'recipe_id' });
+    // 其他关联保持不变
+  }
+}
 
 // 初始化模型
 Recipe.init(
