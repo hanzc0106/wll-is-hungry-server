@@ -1,3 +1,4 @@
+import RecipeCategory from '@/models/RecipeCategory'
 // src/models/Recipe.ts
 import { Model, DataTypes, Optional } from 'sequelize'
 import sequelize from '@/utils/pool'
@@ -23,8 +24,26 @@ export interface RecipeCreationAttributes
 // 定义模型类
 class Recipe extends Model<RecipeAttributes, RecipeCreationAttributes> {
   public static associate(models: any) {
-    Recipe.hasMany(models.RecipesIngredient, { foreignKey: 'recipe_id' });
-    // 其他关联保持不变
+    Recipe.hasMany(models.RecipesIngredient, {
+      foreignKey: 'recipe_id',
+      as: 'ingredients',
+      onDelete: 'CASCADE'
+    });
+    Recipe.hasMany(models.RecipeCategory, {
+      foreignKey: 'recipe_id',
+      as: 'categories',
+      onDelete: 'CASCADE'
+    });
+    Recipe.hasMany(models.Step, {
+      foreignKey: 'recipe_id',
+      as: 'steps',
+      onDelete: 'CASCADE'
+    });
+    Recipe.hasMany(models.RecipeTag, {
+      foreignKey: 'recipe_id',
+      as: 'tags',
+      onDelete: 'CASCADE'
+    });
   }
 }
 

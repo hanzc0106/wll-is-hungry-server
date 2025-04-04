@@ -10,8 +10,16 @@ export interface RecipeTagCreationAttributes extends RecipeTagAttributes {}
 
 class RecipeTag extends Model<RecipeTagAttributes, RecipeTagCreationAttributes> {
   public static associate(models: any) {
-    RecipeTag.belongsTo(models.Recipe, { foreignKey: 'recipe_id' })
-    RecipeTag.belongsTo(models.Tag, { foreignKey: 'tag_id' })
+    RecipeTag.belongsTo(models.Recipe, {
+      foreignKey: 'recipe_id',
+      as: 'recipe',
+      onDelete: 'CASCADE'
+    });
+    RecipeTag.belongsTo(models.Tag, {
+      foreignKey: 'tag_id',
+      as: 'tag',
+      onDelete: 'CASCADE'
+    });
   }
 }
 
