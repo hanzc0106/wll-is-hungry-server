@@ -9,21 +9,29 @@ import { StepAttributes } from '@/models/Step'
 
 // 获取全部Recipe
 export async function getAllRecipeList(): Promise<RecipeAttributes[]> {
-  const recipes = await Recipe.findAll()
-  return recipes.map((recipe) => recipe.dataValues)
+  const recipes = await Recipe.findAll();
+  return recipes.map(recipe => recipe.toJSON());
 }
 
 // 获取全部素菜
 export async function getAllVegeRecipes(): Promise<RecipeAttributes[]> {
-  try {
-    const vegeCategoryIds = await getVegeCategoryIds()
-    const recipeIds = await getDistinctRecipeIdsByCategoryIds(vegeCategoryIds)
-    const recipes = await getRecipeListByIds(recipeIds)
-    return recipes
-  } catch (e) {
-    console.log(e)
-    throw e
-  }
+  const vegeCategoryIds = await getVegeCategoryIds();
+  const recipeIds = await getDistinctRecipeIdsByCategoryIds(vegeCategoryIds);
+  
+  const recipes = await Recipe.findAll({
+    where: {
+      id: {
+        [Op.in]: recipeIds
+      }
+    },
+    include: [
+      { association: 'ingredients' },
+      { association: 'steps' },
+      { association: 'categories' }
+    ]
+  });
+  
+  return recipes.map(recipe => recipe.toJSON());
 }
 
 // 获取全部荤菜

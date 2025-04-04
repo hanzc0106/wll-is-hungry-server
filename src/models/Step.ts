@@ -20,7 +20,7 @@ class Step extends Model<StepAttributes, StepCreationAttributes> {
       foreignKey: 'recipe_id',
       as: 'recipe',
       onDelete: 'CASCADE'
-    })
+    });
   }
 }
 

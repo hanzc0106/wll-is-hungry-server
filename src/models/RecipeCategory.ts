@@ -10,8 +10,16 @@ export interface RecipeCategoryCreationAttributes extends RecipeCategoryAttribut
 
 class RecipeCategory extends Model<RecipeCategoryAttributes, RecipeCategoryCreationAttributes> {
   public static associate(models: any) {
-    RecipeCategory.belongsTo(models.Recipe, { foreignKey: 'recipe_id' })
-    RecipeCategory.belongsTo(models.Category, { foreignKey: 'category_id' })
+    RecipeCategory.belongsTo(models.Recipe, {
+      foreignKey: 'recipe_id',
+      as: 'recipe',
+      onDelete: 'CASCADE'
+    });
+    RecipeCategory.belongsTo(models.Category, {
+      foreignKey: 'category_id',
+      as: 'category',
+      onDelete: 'CASCADE'
+    });
   }
 }
 

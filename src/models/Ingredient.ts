@@ -16,6 +16,11 @@ export interface IngredientCreationAttributes extends Optional<IngredientAttribu
 class Ingredient extends Model<IngredientAttributes, IngredientCreationAttributes> {
   // 定义关联
   public static associate(models: any) {
+    Ingredient.belongsTo(models.Recipe, {
+      foreignKey: 'recipe_id',
+      as: 'recipe',
+      onDelete: 'CASCADE'
+    });
     Ingredient.hasMany(models.RecipesIngredient, { foreignKey: 'ingredient_id' });
   }
 }
