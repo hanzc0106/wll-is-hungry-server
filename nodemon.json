@@ -1,0 +1,4 @@
+{
+  "watch": ["src/**/*.ts", "src/controllers/**/*.ts"],
+  "ignore": ["node_modules"]
+}
