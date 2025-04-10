@@ -1,17 +1,11 @@
+import { Recipe, RecipeCategory } from '@/models'
 import { Model, DataTypes, Optional } from 'sequelize'
 import sequelize from '@/utils/pool'
-import { timeStamp } from 'console'
 
-export interface CategoryAttributes {
-  id: number
-  name: string
+class Category extends Model {
+  declare id: number
+  declare name: string
 }
-
-// 定义创建时的可选属性
-export interface CategoryCreationAttributes extends Optional<CategoryAttributes, 'id'> {}
-
-// 定义模型类
-class Category extends Model<CategoryAttributes, CategoryCreationAttributes> {}
 
 // 初始化模型
 Category.init(
@@ -31,8 +25,9 @@ Category.init(
   {
     sequelize,
     modelName: 'categories',
-    freezeTableName: true,
-    timestamps: false
+    tableName: 'categories',
+    timestamps: false,
+    underscored: true
   }
 )
 

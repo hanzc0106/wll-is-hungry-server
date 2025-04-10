@@ -1,7 +1,7 @@
-import Ingredient, { IngredientAttributes } from '@/models/Ingredient'
+import { Ingredient } from '@/models'
 import { Op } from 'sequelize'
 
-export async function getIngredientsByRecipeId(recipeId: number): Promise<IngredientAttributes[]> {
+export async function getIngredientsByRecipeId(recipeId: number): Promise<Ingredient[]> {
   const ingredients = await Ingredient.findAll({
     where: {
       recipe_id: {
@@ -9,5 +9,5 @@ export async function getIngredientsByRecipeId(recipeId: number): Promise<Ingred
       }
     }
   })
-  return ingredients.map((ingredient) => ingredient.dataValues)
+  return ingredients.map((ingredient) => ingredient.toJSON())
 }

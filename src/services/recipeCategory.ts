@@ -1,4 +1,4 @@
-import RecipeCategory from '@/models/RecipeCategory'
+import { RecipeCategory } from '@/models'
 import { Op } from 'sequelize'
 
 // 根据category_id 列表查询
@@ -12,7 +12,7 @@ export async function getDistinctRecipeIdsByCategoryIds(categoryIds: number[]): 
     },
     group: ['recipe_id']
   })
-  return res.map((item) => item.dataValues.recipe_id)
+  return res.map((item) => item.toJSON().recipe_id)
 }
 
 // 根据recipe_id 列表查询
@@ -26,5 +26,5 @@ export async function getDistinctCategoryIdsByRecipeIds(recipeIds: number[]): Pr
     },
     group: ['category_id']
   })
-  return res.map((item) => item.dataValues.category_id)
+  return res.map((item) => item.toJSON().category_id)
 }

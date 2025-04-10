@@ -1,26 +1,11 @@
 import { Model, DataTypes, Optional } from 'sequelize'
 import sequelize from '@/utils/pool'
+import Recipe from './Recipe'
+import Category from './Category'
 
-export interface RecipeCategoryAttributes {
-  recipe_id: number
-  category_id: number
-}
-
-export interface RecipeCategoryCreationAttributes extends RecipeCategoryAttributes {}
-
-class RecipeCategory extends Model<RecipeCategoryAttributes, RecipeCategoryCreationAttributes> {
-  public static associate(models: any) {
-    RecipeCategory.belongsTo(models.Recipe, {
-      foreignKey: 'recipe_id',
-      as: 'recipe',
-      onDelete: 'CASCADE'
-    });
-    RecipeCategory.belongsTo(models.Category, {
-      foreignKey: 'category_id',
-      as: 'category',
-      onDelete: 'CASCADE'
-    });
-  }
+class RecipeCategory extends Model {
+  declare recipe_id: number
+  declare category_id: number
 }
 
 RecipeCategory.init(
@@ -31,7 +16,9 @@ RecipeCategory.init(
       references: {
         model: 'Recipe',
         key: 'id'
-      }
+      },
+      // 设置为复合主键的一部分
+      primaryKey: true
     },
     category_id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -39,14 +26,17 @@ RecipeCategory.init(
       references: {
         model: 'Category',
         key: 'id'
-      }
+      },
+      // 设置为复合主键的一部分
+      primaryKey: true
     }
   },
   {
     sequelize,
+    modelName: 'recipe_categories',
     tableName: 'recipe_categories',
-    freezeTableName: true,
-    timestamps: false
+    timestamps: false,
+    underscored: true
   }
 )
 

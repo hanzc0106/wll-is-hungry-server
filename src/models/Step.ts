@@ -1,27 +1,12 @@
 import sequelize from '@/utils/pool'
 import { Model, DataTypes, Optional } from 'sequelize'
+import Recipe from './Recipe'
 
-// 定义模型的属性
-export interface StepAttributes {
-  id: number
-  recipe_id: number
-  step_number: number
-  description: string
-}
-
-// 定义创建时可选的属性
-export interface StepCreationAttributes extends Optional<StepAttributes, 'id'> {}
-
-// 定义模型类
-class Step extends Model<StepAttributes, StepCreationAttributes> {
-  // 定义关联
-  public static associate(models: any) {
-    Step.belongsTo(models.Recipe, {
-      foreignKey: 'recipe_id',
-      as: 'recipe',
-      onDelete: 'CASCADE'
-    });
-  }
+class Step extends Model {
+  declare id: number
+  declare recipe_id: number
+  declare step_number: number
+  declare description: string
 }
 
 // 初始化模型
@@ -55,8 +40,10 @@ Step.init(
   },
   {
     sequelize,
+    modelName: 'steps',
     tableName: 'steps',
-    timestamps: false // 如果不希望自动添加 createdAt 和 updatedAt 字段
+    timestamps: false,
+    underscored: true
   }
 )
 
