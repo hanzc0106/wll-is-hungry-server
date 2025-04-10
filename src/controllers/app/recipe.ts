@@ -25,10 +25,13 @@ export async function getMeatRecipes(ctx: Context, next: Next): Promise<void> {
 }
 
 export async function getRecipesByIds(ctx: Context, next: Next): Promise<void> {
-  const ids = ctx.request.body.ids
-  if (!Array.isArray(ids)) {
-    throw new Error('Invalid request body: ids should be an array')
+  const idQuery = ctx.request.query.id
+  if (!idQuery) {
+    throw new Error('Invalid request param: id is required')
   }
+  const ids = Array.isArray(idQuery)
+    ? idQuery.map((id: string) => parseInt(id))
+    : [parseInt(idQuery)]
 
   const recipes = await getRecipeListByIds(ids)
   ctx.body = recipes
