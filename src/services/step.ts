@@ -1,7 +1,7 @@
-import Step, { StepAttributes } from '@/models/Step'
+import { Step } from '@/models'
 import { Op } from 'sequelize'
 
-export async function getStepsByRecipeId(recipeId: number): Promise<StepAttributes[]> {
+export async function getStepsByRecipeId(recipeId: number): Promise<Step[]> {
   const steps = await Step.findAll({
     where: {
       recipe_id: {
@@ -11,5 +11,5 @@ export async function getStepsByRecipeId(recipeId: number): Promise<StepAttribut
     order: [['step_number', 'ASC']]
   })
 
-  return steps.map((step) => step.dataValues)
+  return steps.map((step) => step.toJSON())
 }

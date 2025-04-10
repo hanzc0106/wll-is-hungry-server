@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS ingredients (
   type ENUM ( 'ingredient', 'seasoning' ) NOT NULL COMMENT '类型：食材或调料'
 ) COMMENT = '原料和调料信息表';
 
-CREATE TABLE IF NOT EXISTS recipes_ingredients (
+CREATE TABLE IF NOT EXISTS recipe_ingredients (
   id INT AUTO_INCREMENT PRIMARY KEY COMMENT '关联ID，主键，自增',
   recipe_id INT COMMENT '外键，关联菜谱ID',
   ingredient_id INT COMMENT '外键，关联原料ID',

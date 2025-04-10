@@ -1,50 +1,25 @@
-import RecipeCategory from '@/models/RecipeCategory'
 // src/models/Recipe.ts
-import { Model, DataTypes, Optional } from 'sequelize'
+import { Model, DataTypes } from 'sequelize'
 import sequelize from '@/utils/pool'
-import { StepAttributes } from './Step'
-import { IngredientAttributes } from './Ingredient'
+import {
+  Category,
+  Ingredient,
+  RecipeCategory,
+  RecipeIngredient,
+  RecipeTag,
+  Step,
+  Tag
+} from '@/models'
 
-// 定义属性类型
-export interface RecipeAttributes {
-  id: number
-  name: string
-  description?: string
-  summary: string
-  createdAt: Date
-  updatedAt?: Date
-  ingredients?: IngredientAttributes[]
-  steps?: StepAttributes[]
-}
-
-// 定义创建时的可选属性
-export interface RecipeCreationAttributes
-  extends Optional<RecipeAttributes, 'id' | 'description' | 'updatedAt'> {}
-
-// 定义模型类
-class Recipe extends Model<RecipeAttributes, RecipeCreationAttributes> {
-  public static associate(models: any) {
-    Recipe.hasMany(models.RecipesIngredient, {
-      foreignKey: 'recipe_id',
-      as: 'ingredients',
-      onDelete: 'CASCADE'
-    });
-    Recipe.hasMany(models.RecipeCategory, {
-      foreignKey: 'recipe_id',
-      as: 'categories',
-      onDelete: 'CASCADE'
-    });
-    Recipe.hasMany(models.Step, {
-      foreignKey: 'recipe_id',
-      as: 'steps',
-      onDelete: 'CASCADE'
-    });
-    Recipe.hasMany(models.RecipeTag, {
-      foreignKey: 'recipe_id',
-      as: 'tags',
-      onDelete: 'CASCADE'
-    });
-  }
+class Recipe extends Model {
+  declare id: number
+  declare name: string
+  declare description: string
+  declare summary: string
+  declare ingredients: Ingredient[]
+  declare steps: Step[]
+  declare tags: Tag[]
+  declare categories: Category[]
 }
 
 // 初始化模型
@@ -87,7 +62,8 @@ Recipe.init(
   {
     sequelize,
     modelName: 'recipes',
-    freezeTableName: true,
+    tableName: 'recipes',
+    timestamps: true,
     underscored: true // 使用下划线命名法
   }
 )

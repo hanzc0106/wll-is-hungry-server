@@ -1,26 +1,11 @@
 import { Model, DataTypes, Optional } from 'sequelize'
 import sequelize from '@/utils/pool'
+import Recipe from './Recipe'
+import Tag from './Tag'
 
-export interface RecipeTagAttributes {
-  recipe_id: number
-  tag_id: number
-}
-
-export interface RecipeTagCreationAttributes extends RecipeTagAttributes {}
-
-class RecipeTag extends Model<RecipeTagAttributes, RecipeTagCreationAttributes> {
-  public static associate(models: any) {
-    RecipeTag.belongsTo(models.Recipe, {
-      foreignKey: 'recipe_id',
-      as: 'recipe',
-      onDelete: 'CASCADE'
-    });
-    RecipeTag.belongsTo(models.Tag, {
-      foreignKey: 'tag_id',
-      as: 'tag',
-      onDelete: 'CASCADE'
-    });
-  }
+class RecipeTag extends Model {
+  declare recipe_id: number
+  declare tag_id: number
 }
 
 RecipeTag.init(
@@ -31,7 +16,8 @@ RecipeTag.init(
       references: {
         model: 'Recipe',
         key: 'id'
-      }
+      },
+      primaryKey: true
     },
     tag_id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -39,14 +25,16 @@ RecipeTag.init(
       references: {
         model: 'Tag',
         key: 'id'
-      }
+      },
+      primaryKey: true
     }
   },
   {
     sequelize,
+    modelName: 'recipe_tags',
     tableName: 'recipe_tags',
-    freezeTableName: true,
-    timestamps: false
+    timestamps: false,
+    underscored: true
   }
 )
 

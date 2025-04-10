@@ -1,17 +1,12 @@
 import { Model, DataTypes, Optional } from 'sequelize'
 import sequelize from '@/utils/pool'
+import Recipe from './Recipe'
+import RecipeTag from './RecipeTag'
 
-export interface TagAttributes {
-  id: number
-  name: string
+class Tag extends Model {
+  declare id: number
+  declare name: string
 }
-
-// 定义创建时的可选属性
-export interface TagCreationAttributes extends Optional<TagAttributes, 'id'> {}
-
-// 定义模型类
-class Tag extends Model<TagAttributes, TagCreationAttributes> {}
-
 // 初始化模型
 Tag.init(
   {
@@ -30,7 +25,8 @@ Tag.init(
   {
     sequelize,
     modelName: 'tags',
-    freezeTableName: true,
+    tableName: 'tags',
+    timestamps: false,
     underscored: true // 使用下划线命名法
   }
 )

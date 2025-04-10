@@ -1,0 +1,10 @@
+export { default as Category } from './Category'
+export { default as Ingredient } from './Ingredient'
+export { default as Recipe } from './Recipe'
+export { default as RecipeCategory } from './RecipeCategory'
+export { default as RecipeIngredient } from './RecipeIngredient'
+export { default as RecipeTag } from './RecipeTag'
+export { default as Step } from './Step'
+export { default as Tag } from './Tag'
+
+import './association'

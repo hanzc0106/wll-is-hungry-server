@@ -1,28 +1,11 @@
-import { Model, DataTypes, Optional } from 'sequelize';
-import sequelize from '@/utils/pool';
+import { Model, DataTypes, Optional } from 'sequelize'
+import sequelize from '@/utils/pool'
+import { RecipeIngredient, Recipe } from '@/models'
 
-// 定义模型的属性
-export interface IngredientAttributes {
-  id: number;
-  name: string;
-  type: 'ingredient' | 'seasoning';
-  is_required: boolean;
-}
-
-// 定义创建时可选的属性
-export interface IngredientCreationAttributes extends Optional<IngredientAttributes, 'id'> {}
-
-// 定义模型类
-class Ingredient extends Model<IngredientAttributes, IngredientCreationAttributes> {
-  // 定义关联
-  public static associate(models: any) {
-    Ingredient.belongsTo(models.Recipe, {
-      foreignKey: 'recipe_id',
-      as: 'recipe',
-      onDelete: 'CASCADE'
-    });
-    Ingredient.hasMany(models.RecipesIngredient, { foreignKey: 'ingredient_id' });
-  }
+class Ingredient extends Model {
+  declare id: number
+  declare name: string
+  declare type: 'ingredient' | 'seasoning'
 }
 
 // 初始化模型
@@ -43,18 +26,15 @@ Ingredient.init(
       type: DataTypes.ENUM('ingredient', 'seasoning'),
       allowNull: false,
       comment: '类型：食材或调料'
-    },
-    is_required: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-      comment: '是否必需（True/False）'
     }
   },
   {
     sequelize,
+    modelName: 'ingredients',
     tableName: 'ingredients',
-    timestamps: false
+    timestamps: false,
+    underscored: true
   }
-);
+)
 
-export default Ingredient;
+export default Ingredient
